@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Progress } from "antd";
+import "antd/dist/antd.css";
 
 const QuestionCart = ({
     question,
@@ -27,6 +29,19 @@ const QuestionCart = ({
                 <p className="question-number">
                     Question: {questionNumber} / {totalQuestions}
                 </p>
+                <Progress
+                    percent={(100 * questionNumber) / totalQuestions}
+                    steps={totalQuestions}
+                    strokeColor="rgb(63, 114, 152,0.8)"
+                    format={() => ""}
+                />
+                {/* <Progress
+                    strokeColor="rgba(63, 114, 152,0.8)"
+                    type="circle"
+                    percent={(100 * questionNumber) / totalQuestions}
+                    status="active"
+                    format={() => `${questionNumber} / ${totalQuestions}`}
+                /> */}
                 <p>{question}</p>
             </div>
 
