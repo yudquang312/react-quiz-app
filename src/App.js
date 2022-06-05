@@ -1,22 +1,22 @@
 import React, { useState } from "react";
 import "./App.scss";
-import { shuffleArray } from "./utils";
+import { fetchQuizQuestions } from "./utils";
 import QuestionCart from "./components/QuestionCard/QuestionCard";
 
 const TOTAL_QUESTIONS = 10;
 
-const fetchQuizQuestions = async (amount, difficulty) => {
-  const endpoint = `https://opentdb.com/api.php?amount=${amount}&difficulty=${difficulty}&type=multiple&category=9`;
-  const data = await (await fetch(endpoint)).json();
-  // console.log(data);
-  return data.results.map((question) => ({
-    ...question,
-    answers: shuffleArray([
-      ...question.incorrect_answers,
-      question.correct_answer,
-    ]),
-  }));
-};
+// const fetchQuizQuestions = async (amount, difficulty) => {
+//   const endpoint = `https://opentdb.com/api.php?amount=${amount}&difficulty=${difficulty}&type=multiple&category=9`;
+//   const data = await (await fetch(endpoint)).json();
+//   console.log(data);
+//   return data.results.map((question) => ({
+//     ...question,
+//     answers: shuffleArray([
+//       ...question.incorrect_answers,
+//       question.correct_answer,
+//     ]),
+//   }));
+// };
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -27,10 +27,7 @@ function App() {
   const [gameOver, setGameOver] = useState(true);
   const [totalAnswer, setTotalAnswer] = useState(0);
 
-  // console.log(questions);
-
   const startTrivia = async () => {
-    // console.log(gameOver, totalAnswer);
     setLoading(true);
     setGameOver(false);
 
@@ -86,11 +83,11 @@ function App() {
       {!gameOver &&
       !loading &&
       totalAnswer === number + 1 &&
-      number !== TOTAL_QUESTIONS - 1 ? (
+      number !== TOTAL_QUESTIONS - 1 && (
         <button className="btn-next" onClick={nextQuestion}>
           Next Question
         </button>
-      ) : null}
+      )}
     </div>
   );
 }

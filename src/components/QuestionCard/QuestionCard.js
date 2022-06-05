@@ -12,10 +12,8 @@ const QuestionCart = ({
   totalQuestions,
   correctAnswer,
 }) => {
-  // console.log(answers, correctAnswer, userAnswer);
 
   const [answerWrong, setAnswerWrong] = useState(null);
-  // const [timeOut, setTimeOut] = useState(false);
 
   const onClick = (event) => {
     let correct = event.currentTarget.value === correctAnswer;
@@ -37,15 +35,8 @@ const QuestionCart = ({
           strokeColor="rgb(63, 114, 152,0.8)"
           format={() => ""}
         />
-        {/* <Progress
-                    strokeColor="rgba(63, 114, 152,0.8)"
-                    type="circle"
-                    percent={(100 * questionNumber) / totalQuestions}
-                    status="active"
-                    format={() => `${questionNumber} / ${totalQuestions}`}
-                /> */}
         {/* <Timer setTimeOut={setTimeOut} /> */}
-        <p>{question}</p>
+        <p dangerouslySetInnerHTML={{__html: question}}></p>
       </div>
 
       <div className="answer-list">
